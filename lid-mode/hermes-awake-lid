@@ -1,0 +1,9 @@
+#!/bin/sh
+# Lid-closed mode helper for hermes-awake. The only privileged step, kept out of the plugin.
+# Needs the sudoers rule installed by lid-mode/install.sh (pmset disablesleep 0|1, nothing else).
+case "${1:-}" in
+  on)    exec sudo -n /usr/bin/pmset -a disablesleep 1 ;;
+  off)   exec sudo -n /usr/bin/pmset -a disablesleep 0 ;;
+  check) exec sudo -n -l /usr/bin/pmset -a disablesleep 1 >/dev/null ;;
+  *)     echo "usage: hermes-awake-lid on|off|check" >&2; exit 2 ;;
+esac

@@ -1,0 +1,19 @@
+name: hermes-awake
+version: 0.4.0
+description: "Keep the Mac awake while Hermes works: every turn automatically, plus an `awake` tool the agent uses to hold for work that outlives its turn. Battery, heat and duration safety stops. macOS only."
+author: iacker
+license: MIT
+kind: standalone
+requires_hermes: ">=0.22.0"
+platforms:
+  - macos
+provides_hooks:
+  - pre_llm_call
+  - on_session_end
+  - pre_api_request
+  - pre_tool_call
+  - post_tool_call
+provides_tools:
+  - awake
+provides_commands:
+  - awake
